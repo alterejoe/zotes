@@ -44,6 +44,7 @@
     --color-primary: #809bce;
     --color-secondary: #95b8d1;
     --color-tertiary: #b8e0d2;
+    --color-accent: #eac4d5;
     --color-neutral: #cbd5e1;
   }
 }
@@ -239,6 +240,9 @@
   }
   .h-6 {
     height: calc(var(--spacing) * 6);
+  }
+  .h-screen {
+    height: 100vh;
   }
   .max-h-screen {
     max-height: 100vh;

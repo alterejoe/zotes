@@ -43,16 +43,38 @@ var COLORS = map[string]ColorSet{
 		Dark:       "neutral-dark",
 		DarkHover:  "neutral-dark-hover",
 	},
+	"background": {
+		Light:      "slate-50",
+		LightHover: "slate-100",
+		Dark:       "slate-900",
+		DarkHover:  "slate-800",
+	},
 }
 
 const DEFAULT_COLOR = "neutral"
 
+func normalize(v ColorSet) ColorSet {
+	// fallback: LightHover -> Light
+	if v.LightHover == "" {
+		v.LightHover = v.Light
+	}
+	// fallback: Dark -> Light
+	if v.Dark == "" {
+		v.Dark = v.Light
+	}
+	// fallback: DarkHover -> Dark
+	if v.DarkHover == "" {
+		v.DarkHover = v.Dark
+	}
+	return v
+}
+
 func getColor(c string) ColorSet {
 	v, ok := COLORS[c]
 	if !ok {
-		return COLORS[DEFAULT_COLOR]
+		v = COLORS[DEFAULT_COLOR]
 	}
-	return v
+	return normalize(v)
 }
 
 // -----------------------------------------------------------------------------
